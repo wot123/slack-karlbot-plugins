@@ -131,8 +131,9 @@ code_change(_OldVsn, State, _Extra) ->
 %%%===================================================================
 
 
-maybe_echo([Self, "echo"|T], ChannelId, Self) ->
-    slack_client:send_message(ChannelId, string:join(T," "));
+maybe_echo([Self, "echo", TargetChannel |T], _ChannelId, Self) ->
+    TargetChannelId = slack_client:find_channel(TargetChannel),
+    slack_client:send_message(TargetChannelId, string:join(T," "));
 maybe_echo(_, _, _) ->
     ok.
 
