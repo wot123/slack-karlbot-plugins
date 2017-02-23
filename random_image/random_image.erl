@@ -153,7 +153,7 @@ maybe_show_picture(_, _, _, _, _) ->
 
 
 process_command(Text, ChannelId, State) ->
-    maybe_show_picture(rand:uniform(50), Text, ChannelId, State, get_handle(State#state.self)).
+    maybe_show_picture(rand:uniform(51), Text, ChannelId, State, get_handle(State#state.self)).
 
 get_handle(#{<<"id">> := Id}) ->
     "\<\@" ++ binary_to_list(Id) ++ "\>".
