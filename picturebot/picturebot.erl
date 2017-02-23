@@ -134,7 +134,7 @@ code_change(_OldVsn, State, _Extra) ->
 %%% Internal functions
 %%%===================================================================
 
-maybe_show_picture([Self,"wait","here","until" | M], ChannelId, _State, Self) ->
+maybe_show_picture([Self,"wait","here","for" | M], ChannelId, _State, Self) ->
     Image = code:priv_dir(karlbot) ++ "/plugins/picturebot/wait_here.jpeg",
     Text = string:join(M, " "),
     FormatedText = prettypr:format(prettypr:text_par(Text), 16),
