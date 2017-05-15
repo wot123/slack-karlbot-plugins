@@ -112,8 +112,9 @@ handle_cast(_Msg, State) ->
 %%                                   {stop, Reason, State}
 %% @end
 %%--------------------------------------------------------------------
-handle_info([{<<"type">>,<<"message">>},{<<"channel">>,ChannelId},
-                 {<<"user">>,_UserId},{<<"text">>,Body},_,_], State) ->
+handle_info(#{<<"type">> := <<"message">>,
+              <<"channel">> := ChannelId,
+              <<"text">> := Body}, State) ->
     send_response( string:str(binary_to_list(Body),"pull-request"), ChannelId, pick_quote()),
     {noreply, State};
 

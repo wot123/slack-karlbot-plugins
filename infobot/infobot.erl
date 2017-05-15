@@ -91,10 +91,10 @@ handle_cast(_Msg, State) ->
 %%                                   {stop, Reason, State}
 %% @end
 %%--------------------------------------------------------------------
-handle_info([{<<"type">>,<<"message">>},
-             {<<"channel">>, ChannelId},
-             {<<"user">>, UserId},
-             {<<"text">>, Text}, _, _], State) ->
+handle_info(#{<<"type">> := <<"message">>,
+              <<"channel">> := ChannelId,
+              <<"user">> := UserId,
+              <<"text">> := Text}, State) ->
     process_command(string:tokens(binary_to_list(Text)," "), ChannelId, UserId, State),
     {noreply, State};
 
