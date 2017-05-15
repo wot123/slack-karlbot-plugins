@@ -138,7 +138,4 @@ maybe_show_info(_, _, _, _) ->
     ok.
 
 process_command(Text, ChannelId, UserId, State) ->
-    maybe_show_info(Text, ChannelId, UserId, get_handle(State#state.self)).
-
-get_handle(#{<<"id">> := Id}) ->
-    "\<\@" ++ binary_to_list(Id) ++ "\>\:".
+    maybe_show_info(Text, ChannelId, UserId, slack_client:get_handle(State#state.self)).

@@ -138,9 +138,4 @@ maybe_echo(_, _, _) ->
 
 
 process_command(Text, ChannelId, State) ->
-    maybe_echo(Text, ChannelId, get_handle(State#state.self)).
-
-
-get_handle(Self) ->
-    Id = proplists:get_value(<<"id">>, Self),
-    "\<\@" ++ binary_to_list(Id) ++ "\>\:".
+    maybe_echo(Text, ChannelId, slack_client:get_handle(State#state.self)).

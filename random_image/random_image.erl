@@ -150,9 +150,5 @@ maybe_show_picture(_, _, _, _, _) ->
     ok.
 
 
-
 process_command(Text, ChannelId, State) ->
-    maybe_show_picture(rand:uniform(51), Text, ChannelId, State, get_handle(State#state.self)).
-
-get_handle(#{<<"id">> := Id}) ->
-    "\<\@" ++ binary_to_list(Id) ++ "\>".
+    maybe_show_picture(rand:uniform(51), Text, ChannelId, State, slack_client:get_handle(State#state.self)).
